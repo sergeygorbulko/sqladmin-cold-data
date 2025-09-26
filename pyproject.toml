@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "sqladmin"
-description = 'SQLAlchemy admin for FastAPI and Starlette'
+name = "sqladmin-cold-data"
+description = 'SQLAlchemy admin for FastAPI and Starlette. Administration tools for multiple databases. Providing users with viewing access to cold data.'
 readme = "README.md"
 requires-python = ">=3.8"
 license = "BSD-3-Clause"
