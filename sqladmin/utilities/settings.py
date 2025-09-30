@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     version: str = "0.1.0"
     bind_host: str = "0.0.0.0"
     dind_port: int = 8080
-    gracefull_time_out: int = 30  # seconds
+    gracefull_time_out: int = 30
 
     # admin database
     admin_db_url_async: str = "sqlite+aiosqlite:///./sqladmin.db"
@@ -26,3 +26,6 @@ class Settings(BaseSettings):
     admin_db_max_overflow: int = 30
     admin_db_echo: bool = False
     admin_db_schema: str = "main"
+
+
+settings = Settings()
