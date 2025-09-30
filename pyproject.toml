@@ -11,6 +11,7 @@ license = "BSD-3-Clause"
 keywords = ["sqlalchemy", "fastapi", "starlette", "admin"]
 authors = [
   { name = "Amin Alaee", email = "me@aminalaee.dev" },
+  { name = "Sergey Gorbulko", email = "sergey@gorbulko.ru" },
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
