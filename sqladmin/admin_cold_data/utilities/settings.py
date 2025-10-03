@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     bind_host: str = "0.0.0.0"
     dind_port: int = 8080
     gracefull_time_out: int = 30
+    ui_language: str = "english"  # english, russian
 
     # admin database
     admin_db_url_async: str = "sqlite+aiosqlite:///./sqladmin.db"
