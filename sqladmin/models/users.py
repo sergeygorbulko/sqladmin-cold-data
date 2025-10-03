@@ -10,10 +10,11 @@ class Users(SQLModel, table=True):
     """
     __tablename__ = "Users"
     __table_args__ = (
-        UniqueConstraint("username", name="uq_username"),
-        Field(
-            sa_column_kwargs={"schema": settings.admin_db_schema}
+        UniqueConstraint(
+            "user_name",
+            name="uq_username"
         ),
+        {"schema": settings.admin_db_schema}
     )
     id: int = Field(
         description="User ID",
@@ -23,7 +24,7 @@ class Users(SQLModel, table=True):
             comment="User ID"
         )
     )
-    username: str = Field(
+    user_name: str = Field(
         description="Username",
         index=True,
         sa_column=Column(
