@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, Float, Date, DateTime, Boolean, String
 from sqlalchemy.sql import Select
 from typing import Any, List, Tuple
 from datetime import datetime
-from utilities.settings import settings
+from sqladmin.admin_cold_data.utilities.settings import settings
 from enum import Enum
 
 
