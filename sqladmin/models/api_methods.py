@@ -21,7 +21,7 @@ class APIMethods(SQLModel, table=True):
         description="API Router ID",
         sa_column=Column(
             ForeignKey(
-                f"{settings.admin_db_schema}.api_routers.id",
+                f"{settings.admin_db_schema}.APIRouters.id",
                 ondelete="CASCADE"
             ),
             nullable=False,

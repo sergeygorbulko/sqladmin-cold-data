@@ -1,5 +1,5 @@
 from sqlmodel import SQLModel, Field, Relationship, UniqueConstraint
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, ForeignKey
 from models.views_access import ViewsAccess
 from utilities.settings import settings
 
@@ -77,3 +77,16 @@ class Views(SQLModel, table=True):
         back_populates="views",
         link_model=ViewsAccess
     )
+
+    database_id: int = Field(
+        description="Database ID",
+        sa_column=Column(
+            ForeignKey(
+                f"{settings.admin_db_schema}.Databases.id",
+                ondelete="CASCADE"
+            ),
+            nullable=False,
+            comment="Database ID"
+        )
+    )
+    database: "Databases" = Relationship(back_populates="view")
