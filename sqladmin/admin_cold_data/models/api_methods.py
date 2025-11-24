@@ -19,6 +19,7 @@ class APIMethods(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
     api_router_id: int = Field(
         description="API Router ID",
+        title="API Router ID",
         sa_column=Column(
             ForeignKey(
                 f"{settings.admin_db_schema}.APIRouters.id",
@@ -30,6 +31,7 @@ class APIMethods(SQLModel, table=True):
     )
     method_type: HTTPMethod = Field(
         description="Method Type",
+        title="Method Type",
         sa_column=Column(
             String(10),
             nullable=False,
@@ -38,6 +40,7 @@ class APIMethods(SQLModel, table=True):
     )
     operation_id: str = Field(
         description="Operation ID",
+        title="Operation ID",
         sa_column=Column(
             String(255),
             nullable=False,
@@ -46,6 +49,7 @@ class APIMethods(SQLModel, table=True):
     )
     summary: str = Field(
         description="Summary",
+        title="Summary",
         sa_column=Column(
             String(255),
             nullable=False,
@@ -54,6 +58,7 @@ class APIMethods(SQLModel, table=True):
     )
     description: str = Field(
         description="Description",
+        title="Description",
         sa_column=Column(
             String(1000),
             nullable=True,
@@ -62,6 +67,7 @@ class APIMethods(SQLModel, table=True):
     )
     deprecated: bool = Field(
         description="Deprecated",
+        title="Deprecated",
         default=False,
         sa_column=Column(
             Boolean,
@@ -69,10 +75,15 @@ class APIMethods(SQLModel, table=True):
             comment="Deprecated"
         )
     )
-    rete_limit: int = Field(
+    rate_limit: int = Field(
         description="Rate Limit",
+        title="Rate Limit",
         sa_column=Column(
             nullable=True,
             comment="Rate Limit"
         )
+    )
+
+    api_router: "APIRouters" = Relationship(
+        back_populates="api_methods"
     )

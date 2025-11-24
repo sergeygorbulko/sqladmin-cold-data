@@ -12,6 +12,7 @@ class ViewsAccess(SQLModel, table=True):
 
     group_id: int = Field(
         description="Group ID",
+        title="Group ID",
         foreign_key=f"{settings.admin_db_schema}.AccessGroups.id",
         primary_key=True,
         sa_column=Column(
@@ -22,6 +23,7 @@ class ViewsAccess(SQLModel, table=True):
     )
     view_id: int = Field(
         description="View ID",
+        title="View ID",
         foreign_key=f"{settings.admin_db_schema}.Views.id",
         primary_key=True,
         sa_column=Column(

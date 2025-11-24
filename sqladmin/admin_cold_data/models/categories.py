@@ -18,6 +18,7 @@ class Categories(SQLModel, table=True):
     )
     id: int = Field(
         description="Category ID",
+        title="Category ID",
         primary_key=True,
         sa_column=Column(
             nullable=False,
@@ -26,6 +27,7 @@ class Categories(SQLModel, table=True):
     )
     category_code: str = Field(
         description="Category Code",
+        title="Category Code",
         index=True,
         sa_column=Column(
             String(50),
@@ -36,6 +38,7 @@ class Categories(SQLModel, table=True):
     description: str | None = Field(
         default=None,
         description="Category Description",
+        title="Category Description",
         sa_column=Column(
             String(255),
             nullable=True,

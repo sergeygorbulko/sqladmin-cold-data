@@ -11,6 +11,7 @@ class APIRouters(SQLModel, table=True):
     id: int = Field(primary_key=True)
     model: str = Field(
         description="API Model",
+        title="API Model",
         sa_column=Column(
             String(255),
             nullable=False,
@@ -20,24 +21,25 @@ class APIRouters(SQLModel, table=True):
     )
     router: str = Field(
         description="API Router",
+        title="API Router",
         sa_column=Column(
             String(255),
             nullable=False,
-            unique=True,
             comment="API Router"
         )
     )
     prefix: str = Field(
         description="Router Prefix",
+        title="Router Prefix",
         sa_column=Column(
             String(255),
             nullable=False,
-            unique=True,
             comment="Router Prefix"
         )
     )
     description: str = Field(
         description="Router Description",
+        title="Router Description",
         sa_column=Column(
             String(1000),
             nullable=True,
@@ -45,4 +47,6 @@ class APIRouters(SQLModel, table=True):
         )
     )
 
-    api_methods: list[APIMethods] = Relationship(back_populates="api_router")
+    api_methods: list[APIMethods] = Relationship(
+        back_populates="api_router"
+    )

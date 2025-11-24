@@ -18,6 +18,7 @@ class Users(SQLModel, table=True):
     )
     id: int = Field(
         description="User ID",
+        title="User ID",
         primary_key=True,
         sa_column=Column(
             nullable=False,
@@ -26,6 +27,7 @@ class Users(SQLModel, table=True):
     )
     user_name: str = Field(
         description="Username",
+        title="Username",
         index=True,
         sa_column=Column(
             String(100),

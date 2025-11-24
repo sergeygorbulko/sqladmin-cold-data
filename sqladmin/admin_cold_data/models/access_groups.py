@@ -10,23 +10,25 @@ class AccessGroups(SQLModel, table=True):
     __tablename__ = "AccessGroups"
     __table_args__ = (
         UniqueConstraint(
-            "name",
-            name="uq_access_groups_name"),
+            "code",
+            name="uq_access_groups_code"),
         {"schema": settings.admin_db_schema}
     )
 
     id: int = Field(primary_key=True)
     code: str = Field(
         description="Access Group Code",
+        title="Access Group Code",
         index=True,
         sa_column=Column(
             String(100),
-            nullable=False,
+            index=True,
             comment="Access Group Code"
         )
     )
     description: str = Field(
         description="Access Group Description",
+        title="Access Group Description",
         sa_column=Column(
             String(255),
             nullable=False,
@@ -35,8 +37,10 @@ class AccessGroups(SQLModel, table=True):
     )
 
     users_access: list["Users"] = Relationship(
-        back_populates="groups")
+        back_populates="groups"
+    )
     views_access: list["Views"] = Relationship(
-        back_populates="groups")
+        back_populates="groups"
+    )
     categories_access: list["Categories"] = Relationship(
         back_populates="groups")

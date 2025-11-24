@@ -1,37 +1,35 @@
 from sqlmodel import SQLModel, Field, Relationship, UniqueConstraint
 from sqlalchemy import Column, String, ForeignKey
-from models.views_access import ViewsAccess
 from utilities.settings import settings
 
 
-class Views(SQLModel, table=True):
-    __tablename__ = "Views"
+class Models(SQLModel, table=True):
+    __tablename__ = "Models"
     __table_args__ = (
         UniqueConstraint(
-            "view_name",
             "model_name",
-            name="uq_view_name_model_name"
+            name="uq_models_model_name"
         ),
         {"schema": settings.admin_db_schema}
     )
     id: int = Field(
-        description="View ID",
-        title="View ID",
+        description="Model ID",
+        title="Model ID",
         primary_key=True,
         sa_column=Column(
             nullable=False,
-            comment="View ID"
+            comment="Model ID"
         )
     )
-    view_name: str = Field(
-        description="View name",
-        title="View name",
+    model_name: str = Field(
+        description="Model name",
+        title="Model name",
         index=True,
         sa_column=Column(
             String(100),
             nullable=False,
             unique=True,
-            comment="View name"
+            comment="Model name"
         )
     )
     description: str = Field(
@@ -43,13 +41,13 @@ class Views(SQLModel, table=True):
             comment="View description"
         )
     )
-    view_module_import_path: str = Field(
-        description="View module import path",
-        title="View module import path",
+    sqlmodel_module_import_path: str = Field(
+        description="SQLModel module import path",
+        title="SQLModel module import path",
         sa_column=Column(
             String(255),
             nullable=False,
-            comment="View model import path"
+            comment="SQLModel module import path"
         )
     )
     confluence_url: str = Field(
@@ -61,30 +59,16 @@ class Views(SQLModel, table=True):
             comment="Confluence URL"
         )
     )
-    identity: str = Field(
-        description="View identity",
-        title="View identity",
-        sa_column=Column(
-            String(100),
-            nullable=False,
-            unique=True,
-            comment="View identity"
-        )
-    )
-    model_id: int = Field(
-        description="Model ID",
-        title="Model ID",
+    database_id: int = Field(
+        description="Database ID",
         sa_column=Column(
             ForeignKey(
-                f"{settings.admin_db_schema}.Models.id",
+                f"{settings.admin_db_schema}.Databases.id",
                 ondelete="CASCADE"
             ),
             nullable=False,
-            comment="Model ID"
+            comment="Database ID"
         )
     )
-    model: "Models" = Relationship(back_populates="views")
-    groups: list["AccessGroups"] = Relationship(
-        back_populates="views",
-        link_model=ViewsAccess
-    )
+    database: "Databases" = Relationship(back_populates="model")
+    view: "Views" = Relationship(back_populates="model")

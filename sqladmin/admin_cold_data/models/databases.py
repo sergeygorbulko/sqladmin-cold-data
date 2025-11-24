@@ -10,6 +10,7 @@ class Databases(SQLModel, table=True):
     id: int = Field(primary_key=True)
     alias: str = Field(
         description="Database Alias",
+        title="Database Alias",
         sa_column=Column(
             String(255),
             nullable=False,
@@ -19,6 +20,7 @@ class Databases(SQLModel, table=True):
     )
     description: str = Field(
         description="Database Description",
+        title="Database Description",
         sa_column=Column(
             String(1000),
             nullable=True,
@@ -27,6 +29,7 @@ class Databases(SQLModel, table=True):
     )
     connection_string: str = Field(
         description="Connection String",
+        title="Connection String",
         sa_column=Column(
             String(1000),
             nullable=False,
@@ -34,4 +37,4 @@ class Databases(SQLModel, table=True):
         )
     )
 
-    views: "Views" = Relationship(back_populates="database")
+    model: "Models" = Relationship(back_populates="database")

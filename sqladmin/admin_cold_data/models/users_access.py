@@ -15,6 +15,7 @@ class UsersAccess(SQLModel, table=True):
     )
     group_id: int = Field(
         description="Group ID",
+        title="Group ID",
         foreign_key=f"{settings.admin_db_schema}.AccessGroups.id",
         primary_key=True,
         sa_column=Column(
@@ -25,6 +26,7 @@ class UsersAccess(SQLModel, table=True):
     )
     user_id: int = Field(
         description="User ID",
+        title="User ID",
         foreign_key=f"{settings.admin_db_schema}.Users.id",
         primary_key=True,
         sa_column=Column(
